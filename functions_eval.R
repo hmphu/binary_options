@@ -25,7 +25,8 @@ opt.cut = function(perf, pred){
 
 
 score = function(t,targetSymbol,n_train) {
-  count_months = elapsed_months(min(t$date),max(t$date))
+  t$date = t$date %>% as.character %>% as.Date
+  count_months = elapsed_months(min(t$date ),max(t$date ))
   days.test = t %>% nrow
   pred <- prediction(t$probs, as.factor(t$target))
   perf <- performance(pred, measure = "tpr", x.measure = "fpr") 

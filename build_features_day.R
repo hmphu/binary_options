@@ -20,9 +20,9 @@ s=readRDS("stocks_day/stocks_day.rds")
 allSymbols = s[,names(s) %like% "Close"] %>% names %>% get_name
 runSymbols = allSymbols[ allSymbols %in% gsub("\\^","",sp)] 
 runSymbols=c("GSPC","NDX","DJI","AAPL","MSFT","FTSE","GDAXI")
+runSymbols=c("FTSE","GDAXI")
 targetSymbol=c("FTSE")
 #---------------------------------
-
 
 #--------------load all possible dates MSFT
 ALL_DATES = index(getSymbols("MSFT",src="yahoo",auto.assign = F)) %>% as.Date 
@@ -36,6 +36,7 @@ for (targetSymbol in runSymbols) {
   #-------reorder descending
   s %>% dim
   s <- s %>% arrange(desc(date))
+  names(s)
 
   #------ Open and Close rates same day 9-12 and 12-16 (only for US stocks)
   dmin = readRDS("stocks_minute/GSPC.rds") %>% filter(hour(datetime) == 12 & minute(datetime) == 0 ) %>% head(1) # DUMMY!!!
@@ -53,13 +54,13 @@ for (targetSymbol in runSymbols) {
   TS_OPCLO=TS_OPCLO[,c("target_Open","target_Close","target_12","f.sameday_912")]
   
   #-------same day difference Open Close [f.dayoc]
-  OPCLO = build_features_samedayOC(allSymbols,s)
+  OPCLO = build_features_samedayOC(s,allSymbols)
   
   #-------momentum [f.mom]
   MOM = build_features_momentum(OPCLO[,"f.dayoc_" %+% targetSymbol,drop=F],days=c(3,7,14,21))
  
   #--------min max [f.dayminmax]
-  MINMAX = build_features_samedayMinMax(allSymbols,s)
+  MINMAX = build_features_samedayMinMax(s,allSymbols)
   
   # #------specific technial indicators [ f.tec]
   TEC_IND =data.frame()
@@ -93,7 +94,7 @@ for (targetSymbol in runSymbols) {
   
   #------COMBINE
   s4 = cbind(s[,names(s) %like% "date" | names(s) %like% targetSymbol],TS_OPCLO,OPCLO,MOM,MINMAX,PERC
-             ,TEC_IND,PERC_TEC
+             #,TEC_IND,PERC_TEC
              ,F_TIME)
   
   #-----order asc
@@ -105,7 +106,7 @@ for (targetSymbol in runSymbols) {
   nzv$nas = Nas
   nzv$var = rownames(nzv)
   nzv[nzv$zeroVar == TRUE | nzv$nzv  == TRUE | nzv$nas > 0,]
-  keep.col = nzv[nzv$nzv == FALSE & nzv$zeroVar == FALSE  & nzv$nas <= 130,]$var
+  keep.col = nzv[nzv$nzv == FALSE & nzv$zeroVar == FALSE  & nzv$nas <= 200 | nzv$var %like% "target",]$var
   s5 = s4[,keep.col]
   print("cleaning up...")
   print("before :" %+% dim(s5))
@@ -118,9 +119,8 @@ for (targetSymbol in runSymbols) {
   s6 = merge(ALL_DATES,s5,by.x='date',all.x=T) 
   print("merge :" %+% dim(s6))
   
-
   #----------Cut beginning NAs
-  first0NA = which(apply(s6,1,function(x) length(which(is.na(x)))) %>% as.vector == 0 )[1]
+  first0NA = which(apply(s6[,names(s6) %like% "f."],1,function(x) sum(is.na(x)) == 0 ))[1] %>% names %>% as.numeric
   s6 = s6[first0NA:nrow(s6),]
   s7=s6
   
@@ -130,6 +130,7 @@ for (targetSymbol in runSymbols) {
   #s7[1:10,names(s7) %like% "target|date|GSPC.Close|GSPC.Open|f.dayoc_GSPC"]
   
   #------------TARGET Next day 12-16
+  s7$target_1_1216.pure = NA
   s7$target_1_1216.pure = (s7$target_Close / s7$target_12 - 1) * 100
   s7$target_1_1216.pure = shift(s7$target_1_1216.pure,1,type="lead")
   #s7[1:10,names(s7) %like% "target|date|GSPC.Close|GSPC.Open|f.dayoc_GSPC"]
@@ -148,6 +149,8 @@ for (targetSymbol in runSymbols) {
               eol = "\n", na = "NA", dec = ".", row.names = FALSE,
               col.names = TRUE, qmethod = c("escape", "double"),
               fileEncoding = "utf-8")
+  
+
   
 }
   

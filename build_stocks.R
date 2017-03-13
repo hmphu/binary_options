@@ -35,6 +35,7 @@ for (symb in symbs) {
 #  api_stock_rates(symb,y0,y1,historyType=1,intradayMinutes=0,prefix=symb%+%".",varnames="",batch=NA)
 # }
 
+
 #------------EOD data YAHOO quantmod
 draw=foreach (symb= all_symbs,.errorhandling = "remove") %do% {
   print(symb)
@@ -76,3 +77,9 @@ NAs.row = apply(d2,1,function(x) {length(which(is.na(x)))})
 saveRDS(d2,"stocks_day/stocks_day.rds")
 
 d2[,names(d2) %like% "N225|date"] %>% tail
+
+#--------
+getSymbols("^N225", src = "yahoo",auto.assign = F) %>% tail(1)
+getSymbols("^GDAXI", src = "yahoo",auto.assign = F) %>% tail(1)
+getSymbols("^AXJO", src = "yahoo",auto.assign = F) %>% tail(1)
+getSymbols("^FTSE", src = "yahoo",auto.assign = F) %>% tail(5)

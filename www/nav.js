@@ -5,7 +5,7 @@ $(document).ready(function() {
     });
     
     $( "#BUT_res" ).click(function( event ) {
-          $("a[data-value=\'Stock Directions\']").trigger("click");
+          $("a[data-value=\'next day prediction\']").trigger("click");
     });
     
     $("#k_multiple").bind("DOMSubtreeModified",function(){

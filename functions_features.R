@@ -199,29 +199,31 @@ build_features_day_perc <- function(objDF,days, offLimitsSymbols,symbs, roundByS
 
 
 #--------generate features same day difference in %
-build_features_samedayOC = function(symbs,d) {
+build_features_samedayOC = function(d,symbs) {
   
- out =  symbs %>% sapply(function(x) (d[,x %+% ".Close"] / d[,x %+% ".Open"] -1 ) * 100 )
- colnames(out) = "f.dayoc_" %+% colnames(out)
+ out =  symbs %>% sapply(function(x) (d[,x %+% ".Close"] / d[,x %+% ".Open"] -1 ) * 100 )  
+ if (is.null((dim(out)))) names(out) = "f.dayoc_" %+% names(out) else colnames(out) = "f.dayoc_" %+% colnames(out)
  out
 }
 
-build_features_samedayMinMax = function(symbs,d) {
+build_features_samedayMinMax = function(d,symbs) {
   
   out =  symbs %>% sapply(function(x) (d[,x %+% ".High"] / d[,x %+% ".Low"] -1 ) * 100 )
   colnames(out) = "f.dayminmax_" %+% colnames(out)
   out
 }
 
+
 #--------generate features momentum
 build_features_momentum  = function(OPCLO,days) {
-  
-  foreach (d=days) %do% {
+  OPCLO = OPCLO %>% as.data.frame
+  OPCLO[is.na(OPCLO)] <- 0
+  out = foreach (d=days) %do% {
     o=rollapply(OPCLO,FUN=mean,width=d,by=1,fill = NA,align="left")
-    colnames(o) = "f.mom_" %+% d
     o
   } %>% do.call("cbind",.)
-  
+  colnames(out) = "f_mom_" %+% days
+  out
 }
 
 

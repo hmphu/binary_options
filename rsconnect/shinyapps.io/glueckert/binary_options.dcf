@@ -3,9 +3,9 @@ title: binary_options
 account: glueckert
 server: shinyapps.io
 appId: 150566
-bundleId: 705597
+bundleId: 718064
 url: https://glueckert.shinyapps.io/binary_options/
-when: 1486607915.49636
+when: 1487627628.89243
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: logs/clusterwork_2017-01-31.txt|logs/clusterwork_2017-02-01.txt|logs/clusterwork_2017-02-02.txt|logs/clusterwork_2017-02-03.txt|logs/clusterwork_2017-02-04.txt|logs/clusterwork_2017-02-05.txt|logs/clusterwork_2017-02-06.txt|stocks_day/AAPL.csv|stocks_day/DJI.csv|stocks_day/GSPC.csv|stocks_day/MSFT.csv|stocks_day/NDX.csv|stocks_day/stocks_day.rds|stocks_day/TSLA.csv|stocks_minute/AAPL.rds|stocks_minute/BABA.rds|stocks_minute/BIDU.rds|stocks_minute/CAT.rds|stocks_minute/^DJI.rds|stocks_minute/EBAY.rds|stocks_minute/FB.rds|stocks_minute/FDX.rds|stocks_minute/GM.rds|stocks_minute/GOOGL.rds|stocks_minute/^GSPC.rds|stocks_minute/GS.rds|stocks_minute/HD.rds|stocks_minute/JPM.rds|stocks_minute/KO.rds|stocks_minute/MCD.rds|stocks_minute/MSFT.rds|stocks_minute/^NDX.rds|stocks_minute/NFLX.rds|stocks_minute/PFE.rds|stocks_minute/SBUX.rds|stocks_minute/TSLA.rds|stocks_minute/TWTR.rds|stocks_minute/WMT.rds|stocks_minute/XOM.rds
+ignoredFiles: stocks_day/stocks_day.rds|stocks_minute/AAPL.rds|stocks_minute/BABA.rds|stocks_minute/BIDU.rds|stocks_minute/CAT.rds|stocks_minute/^DJI.rds|stocks_minute/DJI.rds|stocks_minute/EBAY.rds|stocks_minute/FB.rds|stocks_minute/FDX.rds|stocks_minute/GM.rds|stocks_minute/GOOGL.rds|stocks_minute/GSPC.rds|stocks_minute/GS.rds|stocks_minute/HD.rds|stocks_minute/JPM.rds|stocks_minute/KO.rds|stocks_minute/MCD.rds|stocks_minute/MSFT.rds|stocks_minute/^NDX.rds|stocks_minute/NDX.rds|stocks_minute/NFLX.rds|stocks_minute/PFE.rds|stocks_minute/SBUX.rds|stocks_minute/TSLA.rds|stocks_minute/TWTR.rds|stocks_minute/WMT.rds|stocks_minute/XOM.rds

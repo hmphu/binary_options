@@ -208,13 +208,13 @@ list_invest =  reactive({
   
   output$table_kpis <- DT::renderDataTable({
     DT::datatable(
-  load_kpi,options = list(pageLength = 5)
+  load_kpi,rownames= FALSE,options = list(pageLength = 5)
     )
   })
   
   output$table_benchmark <- DT::renderDataTable({
     DT::datatable(
-      read.table("results/table_benchmark.csv",header=T)
+      read.table("results/table_benchmark.csv",header=T),rownames= FALSE
     )
   })
   

@@ -22,11 +22,14 @@ fluidPage(
                       tags$div(class="pcont",
                                actionButton("BUT_learn", "Learn",class="btn btn-primary"),
                                actionButton("BUT_sim", "Simulate",class="btn btn-primary"),
-                               actionButton("BUT_res", "Results",class="btn btn-primary")
+                               actionButton("BUT_res", "Results",class="btn btn-primary"),
+                               actionButton("BUT_git", "Github",class="btn btn-primary", icon = icon("fa-github",lib = "font-awesome"),onclick = "window.open('https://github.com/KlausGlueckert/binary_options', '_blank')")
                                ),
                       
                       
                       HTML("<div class='pcont'> <img class='big' src='bill.jpg'></div>"),
+                      
+  
                                       
                                       bsModal("MODAL_sim", "Simulate returns", "BUT_sim", size = "small",
                                               tags$p("How much would you like to invest?"),
@@ -215,7 +218,6 @@ fluidPage(
               )
               
               ),
-             navbarMenu("Backtest",icon = icon("gear",lib = "font-awesome"),
                    tabPanel("next day prediction",icon = icon("gear",lib = "font-awesome"),
                             tags$div(class = "well plot",
                                      tags$label(class="boxhead","Next day predictions"),tags$hr(),
@@ -238,15 +240,7 @@ fluidPage(
                                      )
                             )
                             
-                   ),
-                   tabPanel("next hour prediction",icon = icon("gear",lib = "font-awesome"),
-                            tags$div(class = "well plot",
-                                     tags$label(class="boxhead","Next hour prediction"),tags$hr(),
-                                     tags$p("work in progress...")
-                                     
-                            )
-                            
-                   )
+                  # ),
              ),
              tabPanel("Live Trading",icon = icon("tachometer",lib = "font-awesome"),
                       HTML("placeholder")
