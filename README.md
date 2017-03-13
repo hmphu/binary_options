@@ -3,6 +3,7 @@ Dataincubator Capstone project: Automated binary option trading (work in progres
 https://glueckert.shinyapps.io/binary_options/
 
 **Goal**: predict hourly or daily stock direction using machine learning and perform API based automated trading on binary option platforms. 
+
 **Result**: up to 0.7 accuracy yielding  20%+ ROI at sharp-ratio of 5+
 
 The webapp shows:
