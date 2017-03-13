@@ -2,9 +2,8 @@ Dataincubator Capstone project: Automated binary option trading (work in progres
 ===============================================================================
 https://glueckert.shinyapps.io/binary_options/
 
-Goal:
-
-* predict hourly/daily stock direction using machine learning and perform API based automated trading on binary option platforms. 
+**Goal**: predict hourly or daily stock direction using machine learning and perform API based automated trading on binary option platforms. 
+**Result**: up to 0.7 accuracy yielding  20%+ ROI at sharp-ratio of 5+
 
 The webapp shows:
 
@@ -19,64 +18,51 @@ Data used
 * for end-of-day data: yahoo finance via [quantmod package](https://cran.r-project.org/web/packages/quantmod/quantmod.pdf)
 * for minute data: [activetick API](http://wwww.activetick.com)
 
-See below for [details](#details) and [tech stack](#tech-stack)
-
-Details
+Key directories and files
 ===============================================================================
-Similar countries to your top choice are found using machine learning (affinity
-clustering). See the notebook `/code/python-explore/affinitypropagation.ipynb`
+`/build_stocks.R`
+retrieves stock data for daily rates and minute rates
 
+`/build_plotdata.R`
+builds 5-minute, 15-minute, 60-minute directional stock movements for visualizations in the *stock directions* tab
 
-Key directories
-===============================================================================
-
-`/dir1`
-
-explanation dir1
-
-`/dir2`
-
-explanation dir2
+`/build_features_day.R`
+calculates features for next-day analysis using a mix of technical indicators (R-quantmod) and sliding window approach
 
 Tech stack
 ===============================================================================
-Briefly, this is a Python-Flask web application with a PostgreSQL database and bokeh-driven data explorer, all deployed to Heroku. The web page is styles with <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>. <a href="{{ url_for('static', filename='ico/favicon.ico') }}" target="_blank">Favicon</a> is my own, created on <a href="https://www.fiftythree.com" target="_blank">Paper for iOS</a> and converted with <a href="http://www.favicon.cc/" target="_blank">favicon.cc</a></p>
+Shiny-R application deployed to <a href="http://www.shinyapps.io/" target="_blank">shinyapps.io</a>
 
 Analysis and machine learning
   * R
-  * Python
 
 Web & Graphics
+  * R Shiny
   * Bootstrap
   * Custom CSS, HTML tweaks
-
-Databases
-* None used, just saved as CSVs
-
-Methodology notes
-===============================================================================
-global market hyptothesis:
-
-* global market
-* global market
-* global market
-
-feature generation:
-
-* features
-* features
-* features
-
-modelling:
-
-* model
-* model
-* model
+  * JQuery / Javascript
 
 Sources 
 ===============================================================================
-Papers on stock trading:
-* http://data.worldbank.org/data-catalog/CPIA
+Stock trading papers
+* http://cs229.stanford.edu/proj2012/ShenJiangZhang-StockMarketForecastingusingMachineLearningAlgorithms.pdf
+* https://pdfs.semanticscholar.org/4ecc/55e1c3ff1cee41f21e5b0a3b22c58d04c9d6.pdf
 
-Other sources
-* http://data.worldbank.org/data-catalog/CPI
+Trading tutorials
+* https://www.toptal.com/machine-learning/s-p-500-automated-trading
+* http://francescopochetti.com/stock-market-prediction-part-ii-feature-generation/
+
+Live data feeds
+* https://www.quora.com/What-are-some-good-APIs-to-get-real-time-stock-quotes
+* https://www.programmableweb.com/news/96-stocks-apis-bloomberg-nasdaq-and-etrade/2013/05/22
+* http://quant.stackexchange.com/questions/32336/api-or-service-to-get-german-dax-and-uk-ftse-historical-and-or-live-minute-data
+* http://quant.stackexchange.com/questions/18215/where-to-get-long-time-historical-intraday-data?rq=1
+
+About binary options
+* http://www.investopedia.com/articles/active-trading/061114/guide-trading-binary-options-us.asp
+* http://www.investopedia.com/terms/b/binary-option.asp
+
+Stock symbol guide:
+* http://www.qmatix.com/XLQSymbolGuide.htm
+
+
