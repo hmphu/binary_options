@@ -62,7 +62,7 @@ About binary options
 * http://www.investopedia.com/articles/active-trading/061114/guide-trading-binary-options-us.asp
 * http://www.investopedia.com/terms/b/binary-option.asp
 
-Stock symbol guide:
+Stock symbol guides:
 * http://www.qmatix.com/XLQSymbolGuide.htm
 
 
