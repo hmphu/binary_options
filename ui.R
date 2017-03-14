@@ -243,7 +243,7 @@ fluidPage(
                   # ),
              ),
              tabPanel("Live Trading",icon = icon("tachometer",lib = "font-awesome"),
-                      HTML("placeholder")
+                      HTML("coming soon...")
              )
                       )
                       )
